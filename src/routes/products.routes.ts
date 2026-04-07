@@ -1,10 +1,11 @@
-import { Router } from "express"
-import { ProductsController } from "@/controllers/products-controller"
+import { Router } from 'express';
+import { ProductsController } from '@/controllers/products-controller';
 
-const productsRoutes = Router()
-const productsController = new ProductsController()
 
-productsRoutes.get("/", productsController.index)
-productsRoutes.post("/", productsController.create)
+const productsRoutes = Router();
+const productsController = new ProductsController();
 
-export { productsRoutes }
+productsRoutes.get('/', productsController.index);
+productsRoutes.post('/', productsController.create);
+
+export { productsRoutes };
