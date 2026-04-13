@@ -1,10 +1,12 @@
-import { Router } from "express"
+import { Router } from 'express';
 
-import { sessionsRoutes } from "./sessions.routes"
-import { productsRoutes } from "./products.routes"
+import { sessionsRoutes } from './sessions.routes';
+import { productsRoutes } from './products.routes';
 
-const routes = Router()
-routes.use("/sessions", sessionsRoutes)
-routes.use("/products", productsRoutes)
+import { ensureAuthenticated } from '../../middlewares/ensureAuthorization';
 
-export { routes }
+const routes = Router();
+routes.use('/sessions', sessionsRoutes);
+routes.use('/products', ensureAuthenticated, productsRoutes);
+
+export { routes };
