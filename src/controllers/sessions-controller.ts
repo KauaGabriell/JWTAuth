@@ -7,6 +7,7 @@ const fakeUser = {
   id: 1,
   username: 'Kauã',
   password: 'testando',
+  role: 'client'
 };
 
 class SessionsController {
@@ -18,9 +19,9 @@ class SessionsController {
     }
 
     const { secret, expiresIn } = authConfig.jwt;
-    const token = sign({}, secret, {
+    const token = sign({ role: fakeUser.role }, secret, {
       expiresIn,
-      subject: String(fakeUser),
+      subject: String(fakeUser.id),
     });
 
     return response.status(201).json({ token });
