@@ -7,7 +7,7 @@ const fakeUser = {
   id: 1,
   username: 'Kauã',
   password: 'testando',
-  role: 'client'
+  role: 'admin'
 };
 
 class SessionsController {

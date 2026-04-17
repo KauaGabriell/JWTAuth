@@ -1,11 +1,18 @@
 import { Router } from 'express';
 import { ProductsController } from '@/controllers/products-controller';
 
+import { ensureAuthenticated } from '../../middlewares/ensureAuthorization';
+import { verifyUserAuthorization } from '../../middlewares/verifyUserAuthorization';
 
 const productsRoutes = Router();
 const productsController = new ProductsController();
 
 productsRoutes.get('/', productsController.index);
-productsRoutes.post('/', productsController.create);
+productsRoutes.post(
+  '/',
+  ensureAuthenticated,
+  verifyUserAuthorization(['admin', 'rh']),
+  productsController.create,
+);
 
 export { productsRoutes };
